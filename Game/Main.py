@@ -46,10 +46,6 @@ class Game(object):
         self.hero_group.update()
         pygame.display.update()
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 473793768308db243b9e52fdaa454dc966de5857
     def colisions(self):
         for item in pygame.sprite.spritecollide(self.Hero, self.items_group, True):
             self.Hero.animations[item] = item.Pickup()[1]

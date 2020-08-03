@@ -1,17 +1,17 @@
 import pygame
-from .res.sprites.spritesheet import SpriteSheet
+from spritesheet import SpriteSheet
 
 class Gun(pygame.sprite.Sprite):
     def __init__(self, *groups):
         super().__init__(*groups)
         self.perma_item = 'GunPerma'
-        self.spritesheet = SpriteSheet('BlockSelector/Game/res/sprites/spritesheet.png')
-        self.sprites = [self.spritesheet(0, 0, 11, 7),
-                        self.spritesheet(12, 0, 11, 7),
-                        self.spritesheet(24, 0, 11, 7),
-                        self.spritesheet(36, 0, 11, 7)]
+        spritesheet = SpriteSheet('data/spritesheet.png')
+        self.sprites = [spritesheet.get_sprite(0, 0, 11, 7),
+                        spritesheet.get_sprite(12, 0, 11, 7),
+                        spritesheet.get_sprite(24, 0, 11, 7),
+                        spritesheet.get_sprite(36, 0, 11, 7)]
         self.sprite_count = 0
-        self.image = self.spritesheet(0, 0, 11, 7)
+        self.image = spritesheet.get_sprite(0, 0, 11, 7)
         self.image = pygame.transform.scale(self.image, [44, 28])
         self.rect = pygame.Rect(300, 400, 35, 28)
 

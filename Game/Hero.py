@@ -1,7 +1,4 @@
 import pygame
-import sys
-sys.path.insert(0 , 'Game/res/sprites/')
-
 from spritesheet import SpriteSheet
 
 class Hero(pygame.sprite.Sprite):

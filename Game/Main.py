@@ -1,6 +1,6 @@
 import pygame
-from ent.Hero import Hero
-from ..ent.Items import Gun
+from Hero import Hero
+from Items import Gun
 
 class Game(object):
     def __init__(self):

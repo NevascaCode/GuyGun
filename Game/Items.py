@@ -1,8 +1,5 @@
 import pygame
-<<<<<<< HEAD
 from spritesheet import SpriteSheet
-=======
->>>>>>> 473793768308db243b9e52fdaa454dc966de5857
 
 class Gun(pygame.sprite.Sprite):
     def __init__(self, *groups):

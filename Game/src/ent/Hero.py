@@ -1,6 +1,8 @@
 import pygame
-from spritesheet import SpriteSheet
+import sys
+sys.path.insert(0 , 'Game/res/sprites/')
 
+from spritesheet import SpriteSheet
 
 class Hero(pygame.sprite.Sprite):
     def __init__(self, *groups):
@@ -40,7 +42,6 @@ class Hero(pygame.sprite.Sprite):
 
         if self.rotation:
             self.image = pygame.transform.flip(self.image, True, False)
-
         keys = pygame.key.get_pressed()
         #Movimento
         if(keys[pygame.K_w]):

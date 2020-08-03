@@ -1,6 +1,6 @@
 import pygame
-from Hero import Hero
-from Items import Gun
+from ent.Hero import Hero
+from ..ent.Items import Gun
 
 class Game(object):
     def __init__(self):
@@ -45,6 +45,7 @@ class Game(object):
         self.items_group.update()
         self.hero_group.update()
         pygame.display.update()
+
 
     def colisions(self):
         for item in pygame.sprite.spritecollide(self.Hero, self.items_group, True):

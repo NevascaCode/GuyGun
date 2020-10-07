@@ -7,14 +7,14 @@ from .ents.Enemy import Enemy
 class Map(object):
     def __init__(self):
         self.tiles = WorldMapSprite()
-        map = SpriteSheet('res/sprite/spritesheet.png').get_sprite(111,15,34,34)
+        map = SpriteSheet('res/sprite/spritesheet.png').get_sprite(105, 9, 47, 47)
         self.map_array_block: TileLevel = pygame.PixelArray(map).extract((255,255,255))
         self.map_array_items: EntityLevel = pygame.PixelArray(map).extract((255, 0, 0))
         self.map_array_enemys: EntityLevel = pygame.PixelArray(map).extract((0, 255, 0))
 
     def create_level(self, *groups: Group)-> Level:
-        for y in range(0, 34):
-            for x in range(0, 34):
+        for y in range(0, 47):
+            for x in range(0, 47):
                 if(self.map_array_block[y][x] == -1):
                     self.tiles.ColocaBloco(y*32, x*32, 'Block', groups[0])
                 if(self.map_array_items[y][x] == -1):

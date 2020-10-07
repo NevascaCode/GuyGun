@@ -59,33 +59,41 @@ class Hero(pygame.sprite.Sprite):
             if(self.lado_y[1]):
                 self.sprite_count += 0.05
                 self.speed = 5
-                self.la_y += 4
+                self.la_y -= 4
                 self.rect.y -= 4
                 self.subir = True
+            else:
+                self.la_y += 4
 
         if(keys[pygame.K_s]):
             if(self.lado_y[0]):
                 self.sprite_count += 0.05
                 self.speed = 5
-                self.la_y -= 4
+                self.la_y += 4
                 self.rect.y += 4
                 self.descer = True
+            else:
+                self.la_y -= 4
 
         if(keys[pygame.K_a]):
             if(self.lado_x[0]):
                 self.sprite_count += 0.05
                 self.speed = 5
                 self.rotation = True
-                self.la_x += 4
+                self.la_x -= 4
                 self.rect.x -= 4
+            else:
+                self.la_x += 4
 
         if(keys[pygame.K_d]):
             if(self.lado_x[1]):
                 self.sprite_count += 0.05
                 self.rotation = False
                 self.speed = 5
-                self.la_x -= 4
+                self.la_x += 4
                 self.rect.x += 4
+            else:
+                self.la_x -= 4
 
         self.lado_x = [True,True]
         self.lado_y = [True,True]

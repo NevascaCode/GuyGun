@@ -12,7 +12,7 @@ class Game(object):
         pygame.init()
         self.mapa: Level = Map()
         self.tela = pygame.display.set_mode([514, 512])
-        self.camera = pygame.Surface([1088, 1088])
+        self.camera = pygame.Surface([1504, 1504])
         pygame.display.set_caption('BlockDeath')
         self.fps_clock: Clock = pygame.time.Clock()
         self.GAMELOOP: bool = True
@@ -49,11 +49,7 @@ class Game(object):
                     else:
                         self.Hero.sprite_anim: Sprite = 'HeroRun'
             if event.type == pygame.MOUSEBUTTONDOWN and self.Hero.animations['Gun'] == True:
-                Bullet(self.Hero.rect.x, self.Hero.rect.y, pygame.mouse.get_pos(),self.bullet_group)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                print(self.Hero.rect.x, self.Hero.rect.y)
-                print(pygame.mouse.get_pos())
-                print('-------------')
+                Bullet(self.Hero.rect.x, self.Hero.rect.y, (pygame.mouse.get_pos()[0]+self.Hero.la_x, pygame.mouse.get_pos()[1]+self.Hero.la_y), self.bullet_group)
 
     def draw(self)-> None:
         self.camera.fill([36, 48, 65])
@@ -83,24 +79,20 @@ class Game(object):
         for tile in pygame.sprite.spritecollide(self.Hero, self.tiles_group, False):
             if(tile.rect.left == self.Hero.rect.right-4):
                 self.Hero.rect.x -= 4
-                self.Hero.la_x += 0
                 self.Hero.lado_x = [True, False]
                 self.Hero.lado_y = [True, True]
 
             if(tile.rect.right == self.Hero.rect.left+4):
                 self.Hero.rect.x += 4
-                self.Hero.la_x += 0
                 self.Hero.lado_x = [False, True]
                 self.Hero.lado_y = [True, True]
 
             if(tile.rect.bottom == self.Hero.rect.top+4):
                 self.Hero.rect.y += 4
-                self.Hero.la_y += 0
                 self.Hero.lado_x = [True, True]
                 self.Hero.lado_y = [True, False]
 
             if(tile.rect.top == self.Hero.rect.bottom-4):
                 self.Hero.rect.y -= 4
-                self.Hero.la_y += 0
                 self.Hero.lado_x = [True, True]
                 self.Hero.lado_y = [False, True]

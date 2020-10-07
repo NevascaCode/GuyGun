@@ -17,7 +17,7 @@ class Hero(pygame.sprite.Sprite):
 
         self.image: Sprite = sprite_sheet.get_sprite(0, 9, 9, 9)
         self.image: Sprite = pygame.transform.scale(self.image, [28, 28])
-        self.rect: Rect = pygame.Rect(292, 292, 28, 28)
+        self.rect: Rect = pygame.Rect(32*8, 32*8, 28, 28)
 
         self.sprite_anim: Sprite= 'HeroRun'
         self.animations: dict= {'Gun': False, 'GunPerma': False}
@@ -59,6 +59,7 @@ class Hero(pygame.sprite.Sprite):
             if(self.lado_y[1]):
                 self.sprite_count += 0.05
                 self.speed = 5
+                self.la_y += 4
                 self.rect.y -= 4
                 self.subir = True
 
@@ -66,6 +67,7 @@ class Hero(pygame.sprite.Sprite):
             if(self.lado_y[0]):
                 self.sprite_count += 0.05
                 self.speed = 5
+                self.la_y -= 4
                 self.rect.y += 4
                 self.descer = True
 
@@ -74,6 +76,7 @@ class Hero(pygame.sprite.Sprite):
                 self.sprite_count += 0.05
                 self.speed = 5
                 self.rotation = True
+                self.la_x += 4
                 self.rect.x -= 4
 
         if(keys[pygame.K_d]):
@@ -81,6 +84,7 @@ class Hero(pygame.sprite.Sprite):
                 self.sprite_count += 0.05
                 self.rotation = False
                 self.speed = 5
+                self.la_x -= 4
                 self.rect.x += 4
 
         self.lado_x = [True,True]

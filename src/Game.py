@@ -49,7 +49,11 @@ class Game(object):
                     else:
                         self.Hero.sprite_anim: Sprite = 'HeroRun'
             if event.type == pygame.MOUSEBUTTONDOWN and self.Hero.animations['Gun'] == True:
-                Bullet(self.Hero.rect.x, self.Hero.rect.y, pygame.mouse.get_pos(), self.bullet_group)
+                Bullet(self.Hero.rect.x, self.Hero.rect.y, pygame.mouse.get_pos(),self.bullet_group)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print(self.Hero.rect.x, self.Hero.rect.y)
+                print(pygame.mouse.get_pos())
+                print('-------------')
 
     def draw(self)-> None:
         self.camera.fill([36, 48, 65])

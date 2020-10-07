@@ -20,8 +20,7 @@ class Map(object):
                 if(self.map_array_items[y][x] == -1):
                     Gun(y*32, x*32, groups[1])
                 if(self.map_array_enemys[y][x] == -1):
-                    Enemy(y*32, x*32, groups[2])
-
+                    Enemy(x*32, y*32, groups[2])
 
 class WorldMapSprite(object):
     def __init__(self):

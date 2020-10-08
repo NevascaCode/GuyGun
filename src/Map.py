@@ -11,7 +11,6 @@ class Map(object):
         self.map_array_block_wall: TileLevel = pygame.PixelArray(map).extract((255,255,255))
         self.map_array_items: EntityLevel = pygame.PixelArray(map).extract((255, 0, 0))
         self.map_array_enemys: EntityLevel = pygame.PixelArray(map).extract((0, 255, 0))
-        self.map_array_floor = pygame.PixelArray(map).extract((0,0,0))
 
     def create_level(self, *groups: Group)-> Level:
         for y in range(0, 47):
@@ -22,6 +21,7 @@ class Map(object):
                     Gun(y*32, x*32, groups[1])
                 if(self.map_array_enemys[y][x] == -1):
                     Enemy(x*32, y*32, groups[2])
+                self.tiles.ColocaBloco(y*32, x*32, 'Floor', groups[3])
 
 class WorldMapSprite(object):
     def __init__(self):

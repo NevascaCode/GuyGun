@@ -24,9 +24,10 @@ class Game(object):
         self.items_group: Group = pygame.sprite.Group()
         self.hero_group: Group = pygame.sprite.Group()
         self.shadow_group: Group = pygame.sprite.Group()
+        self.floor_group = pygame.sprite.Group()
         self.shadow: Entity = Shadow(self.shadow_group)
         self.Hero: Player = Hero(self.shadow, self.hero_group)
-        self.mapa.create_level(self.tiles_group, self.items_group, self.enemys_group)
+        self.mapa.create_level(self.tiles_group, self.items_group, self.enemys_group, self.floor_group)
 
     def run(self)-> RunGame:
         self.new()
@@ -53,6 +54,7 @@ class Game(object):
 
     def draw(self)-> None:
         self.camera.fill([36, 48, 65])
+        self.floor_group.draw(self.camera)
         self.shadow_group.draw(self.camera)
         self.enemys_group.draw(self.camera)
         self.bullet_group.draw(self.camera)

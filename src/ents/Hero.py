@@ -62,8 +62,6 @@ class Hero(pygame.sprite.Sprite):
                 self.la_y -= 4
                 self.rect.y -= 4
                 self.subir = True
-            else:
-                self.la_y += 4
 
         if(keys[pygame.K_s]):
             if(self.lado_y[0]):
@@ -72,8 +70,6 @@ class Hero(pygame.sprite.Sprite):
                 self.la_y += 4
                 self.rect.y += 4
                 self.descer = True
-            else:
-                self.la_y -= 4
 
         if(keys[pygame.K_a]):
             if(self.lado_x[0]):
@@ -82,8 +78,6 @@ class Hero(pygame.sprite.Sprite):
                 self.rotation = True
                 self.la_x -= 4
                 self.rect.x -= 4
-            else:
-                self.la_x += 4
 
         if(keys[pygame.K_d]):
             if(self.lado_x[1]):
@@ -92,8 +86,6 @@ class Hero(pygame.sprite.Sprite):
                 self.speed = 5
                 self.la_x += 4
                 self.rect.x += 4
-            else:
-                self.la_x -= 4
 
         self.lado_x = [True,True]
         self.lado_y = [True,True]

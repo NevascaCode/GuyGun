@@ -79,20 +79,24 @@ class Game(object):
         for tile in pygame.sprite.spritecollide(self.Hero, self.tiles_group, False):
             if(tile.rect.left == self.Hero.rect.right-4):
                 self.Hero.rect.x -= 4
+                self.Hero.la_x -= 4
                 self.Hero.lado_x = [True, False]
                 self.Hero.lado_y = [True, True]
 
             if(tile.rect.right == self.Hero.rect.left+4):
                 self.Hero.rect.x += 4
+                self.Hero.la_x += 4
                 self.Hero.lado_x = [False, True]
                 self.Hero.lado_y = [True, True]
 
             if(tile.rect.bottom == self.Hero.rect.top+4):
                 self.Hero.rect.y += 4
+                self.Hero.la_y += 4
                 self.Hero.lado_x = [True, True]
                 self.Hero.lado_y = [True, False]
 
             if(tile.rect.top == self.Hero.rect.bottom-4):
                 self.Hero.rect.y -= 4
+                self.Hero.la_y -= 4
                 self.Hero.lado_x = [True, True]
                 self.Hero.lado_y = [False, True]

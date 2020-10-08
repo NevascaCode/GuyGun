@@ -22,7 +22,6 @@ class Map(object):
                     Gun(y*32, x*32, groups[1])
                 if(self.map_array_enemys[y][x] == -1):
                     Enemy(x*32, y*32, groups[2])
-                self.tiles.ColocaBloco(y*32, x*32, 'Floor', groups[3])
 
 class WorldMapSprite(object):
     def __init__(self):

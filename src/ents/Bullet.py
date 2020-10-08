@@ -14,6 +14,8 @@ class Bullet(pygame.sprite.Sprite):
                         spritesheet.get_sprite(49, 12, 5, 5),
                         spritesheet.get_sprite(55, 12, 5, 5),
                         spritesheet.get_sprite(61, 12, 5, 5)]
+
+
         self.sprite_count: int = 0
         self.image: Sprite = spritesheet.get_sprite(31, 12, 5, 5)
         self.image: Sprite = pygame.transform.scale(self.image, (15, 15))
@@ -24,8 +26,8 @@ class Bullet(pygame.sprite.Sprite):
         self.pos_y: int = y_pos
 
         self.ang: float = math.atan2(self.mouse[0] - self.rect.center[0], self.mouse[1] - self.rect.center[1]) - math.pi / 2
-        self.ang_x: float = math.cos(self.ang) * 3
-        self.ang_y: float = math.sin(self.ang) * 3
+        self.ang_x: float = math.cos(self.ang) * 5
+        self.ang_y: float = math.sin(self.ang) * 5
 
     def update(self):
 

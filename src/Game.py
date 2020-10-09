@@ -11,7 +11,7 @@ class Game(object):
     def __init__(self):
         pygame.init()
         self.mapa: Level = Map()
-        self.tela = pygame.display.set_mode([514, 512])
+        self.tela = pygame.display.set_mode([514, 512], pygame.DOUBLEBUF)
         self.camera = pygame.Surface([1504, 1504])
         pygame.display.set_caption('BlockDeath')
         self.fps_clock: Clock = pygame.time.Clock()
@@ -53,7 +53,6 @@ class Game(object):
                 Bullet(self.Hero.rect.x, self.Hero.rect.y, (pygame.mouse.get_pos()[0]+self.Hero.la_x, pygame.mouse.get_pos()[1]+self.Hero.la_y), self.bullet_group)
 
     def draw(self)-> None:
-        self.camera.fill([36, 48, 65])
         self.floor_group.draw(self.camera)
         self.shadow_group.draw(self.camera)
         self.enemys_group.draw(self.camera)

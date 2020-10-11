@@ -3,6 +3,7 @@ from src.MyTypes import Sprite, Group, FileSpriteSheet, Rect, Estate
 from src.spritesheet import SpriteSheet
 
 class Gun(pygame.sprite.Sprite):
+    __slots__ = ('type', 'perma_item', 'sprites', 'sprite_count', 'image', 'rect')
     def __init__(self, pos_x: int, pos_y: int, *groups: Group):
         super().__init__(*groups)
         self.type: str = 'Gun'

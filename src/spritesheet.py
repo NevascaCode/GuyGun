@@ -2,6 +2,7 @@ import pygame
 from .MyTypes import FileSpriteSheet, Sprite
 
 class SpriteSheet:
+    __slots__ = ('sprite_sheet', 'file', 'x', 'y', 'width', 'height', 'image')
     def __init__(self, file: FileSpriteSheet):
         self.sprite_sheet = pygame.image.load(file)
 

@@ -11,10 +11,10 @@ class Hero(pygame.sprite.Sprite):
         sprite_sheet = SpriteSheet('res/sprite/spritesheet.png')
         self.sprites: Sprite = {'HeroRun':[sprite_sheet.get_sprite(1, 9, 7, 7),
                                    sprite_sheet.get_sprite(11, 9, 7, 7),
-                                   sprite_sheet.get_sprite(21, 9, 7, 7),(28, 28)],
+                                   sprite_sheet.get_sprite(21, 9, 7, 7), (28, 28)],
                                 'HeroGun':[sprite_sheet.get_sprite(32, 22, 11, 9),
                                    sprite_sheet.get_sprite(44, 22, 11, 9),
-                                   sprite_sheet.get_sprite(56, 22, 11, 9),(44, 36)]}
+                                   sprite_sheet.get_sprite(56, 22, 11, 9), (44, 36)]}
 
         self.image: Sprite = sprite_sheet.get_sprite(0, 9, 9, 9)
         self.image: Sprite = pygame.transform.scale(self.image, [28, 28])
@@ -35,10 +35,9 @@ class Hero(pygame.sprite.Sprite):
 
         self.rotation = None
         self.sound_walk = pygame.mixer.Sound('res/sfx/walk.wav')
-        self.sound_walk.set_volume(0.1)
+        self.sound_walk.set_volume(0.01)
 
     def get_key(self, keys):
-        self.sound_walk.play()
         if(keys[pygame.K_w]):
             if(self.lado_y[1]):
                 self.sprite_count += 0.05
@@ -71,7 +70,7 @@ class Hero(pygame.sprite.Sprite):
                 self.la_x += 4
                 self.rect.x += self.velocity
 
-    def parar(self):
+    def update(self):
         self.speed -= 0.5
         if self.speed <= 0:
             self.sound_walk.stop()
@@ -79,15 +78,15 @@ class Hero(pygame.sprite.Sprite):
             self.image = self.sprites[self.sprite_anim][0]
             self.image = pygame.transform.scale(self.image, self.sprites[self.sprite_anim][-1])
 
-
-    def update(self):
         if(int(self.sprite_count) >= len(self.sprites[self.sprite_anim])-1):
             self.sprite_count = 0
+
+        self.sound_walk.play()
         self.image = self.sprites[self.sprite_anim][int(self.sprite_count)]
         self.image = pygame.transform.scale(self.image, self.sprites[self.sprite_anim][-1])
 
         if self.rotation:
             self.image = pygame.transform.flip(self.image, True, False)
-            
+
         self.lado_x = [True,True]
         self.lado_y = [True,True]

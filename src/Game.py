@@ -7,12 +7,10 @@ from .ents.Bullet import Bullet
 from .Map import Map
 
 class Game(object):
-    __slots__ = ('mapa', 'tela', 'camera', 'enemys_group', 'tiles_group', 'floor_group', 'fps_clock', 'GAMELOOP', 'bullet_group',
-                 'items_group','hero_group', 'Hero', 'fps_clock')
     def __init__(self):
         pygame.init()
         self.mapa: Level = Map()
-        self.tela = pygame.display.set_mode([514, 512], flags= pygame.HWSURFACE | pygame.DOUBLEBUF)
+        self.tela = pygame.display.set_mode([514, 512])
         self.camera = pygame.Surface([1504, 1504])
         pygame.display.set_caption('BlockDeath')
         self.fps_clock: Clock = pygame.time.Clock()
@@ -31,11 +29,11 @@ class Game(object):
     def run(self)-> RunGame:
         self.new()
         while self.GAMELOOP:
+            self.fps_clock.tick(60)
             self.draw()
             self.events()
             self.update()
             self.colisions()
-            self.fps_clock.tick(60)
 
     def events(self)-> None:
         for event in pygame.event.get():
@@ -56,7 +54,6 @@ class Game(object):
         if(keys[pygame.K_a] or keys[pygame.K_w] or keys[pygame.K_s] or keys[pygame.K_d]):
             self.Hero.get_key(keys)
             self.hero_group.update()
-            
 
     def draw(self)-> None:
         self.floor_group.draw(self.camera)
@@ -68,7 +65,6 @@ class Game(object):
         self.tela.blit(self.camera, (0,0), [self.Hero.rect.x-257, self.Hero.rect.y-256, 514, 512])
 
     def update(self)-> None:
-        self.Hero.parar()
         self.enemys_group.update()
         self.bullet_group.update()
         self.items_group.update()

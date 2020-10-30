@@ -56,7 +56,7 @@ class Game(object):
         if(keys[pygame.K_a] or keys[pygame.K_w] or keys[pygame.K_s] or keys[pygame.K_d]):
             self.Hero.get_key(keys)
             self.hero_group.update()
-            
+
 
     def draw(self)-> None:
         self.floor_group.draw(self.camera)

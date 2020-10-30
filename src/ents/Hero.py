@@ -4,6 +4,7 @@ from src.MyTypes import Rect, Sprite, Speed, Group, Entity
 from src.Map import Map
 from src.spritesheet import SpriteSheet
 
+
 class Hero(pygame.sprite.Sprite):
     __slots__ = ('groups', 'sprites', 'image', 'rect', 'lado_x', 'lado_y', 'velocity')
     def __init__(self, *groups: Group):
@@ -88,6 +89,6 @@ class Hero(pygame.sprite.Sprite):
 
         if self.rotation:
             self.image = pygame.transform.flip(self.image, True, False)
-            
+
         self.lado_x = [True,True]
         self.lado_y = [True,True]

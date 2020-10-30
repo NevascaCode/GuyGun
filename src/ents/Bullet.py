@@ -3,7 +3,8 @@ from src.MyTypes import Group, Sprite, Rect, Mouse, FileSpriteSheet
 from src.spritesheet import SpriteSheet
 import math
 class Bullet(pygame.sprite.Sprite):
-    c_fila = []
+    __slots__ = ('x_pos', 'y_pox', 'mouse', 'groups', 'sprites', 'spritesheet',
+                 'ang', 'ang_x', 'ang_y')
     def __init__(self, x_pos: int, y_pos: int, mouse, *groups: Group):
         super().__init__(*groups)
 
@@ -14,7 +15,6 @@ class Bullet(pygame.sprite.Sprite):
                         spritesheet.get_sprite(49, 12, 5, 5),
                         spritesheet.get_sprite(55, 12, 5, 5),
                         spritesheet.get_sprite(61, 12, 5, 5)]
-
 
         self.sprite_count: int = 0
         self.image: Sprite = spritesheet.get_sprite(31, 12, 5, 5)
@@ -44,7 +44,6 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.x = self.pos_x
         self.rect.y = self.pos_y
 
-
         #Kill
-        '''if(self.rect.x < 0 or self.rect.x > 514 or self.rect.y < 0 or self.rect.y > 512):
-            self.kill()'''
+        if(self.rect.x < 0 or self.rect.x > 1504 or self.rect.y < 0 or self.rect.y > 1504):
+            self.kill()

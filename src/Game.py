@@ -4,14 +4,15 @@ from .MyTypes import Sprite, Image, Level, Clock, Group, Entity, NewGame, RunGam
 from .ents.Hero import Hero
 from .ents.Items import Gun
 from .ents.Bullet import Bullet
-from .Shadow import Shadow
 from .Map import Map
 
 class Game(object):
+    __slots__ = ('mapa', 'tela', 'camera', 'enemys_group', 'tiles_group', 'floor_group', 'fps_clock', 'GAMELOOP', 'bullet_group',
+                 'items_group','hero_group', 'Hero', 'fps_clock')
     def __init__(self):
         pygame.init()
         self.mapa: Level = Map()
-        self.tela = pygame.display.set_mode([514, 512])
+        self.tela = pygame.display.set_mode([514, 512], flags= pygame.HWSURFACE | pygame.DOUBLEBUF)
         self.camera = pygame.Surface([1504, 1504])
         pygame.display.set_caption('BlockDeath')
         self.fps_clock: Clock = pygame.time.Clock()
@@ -23,20 +24,18 @@ class Game(object):
         self.bullet_group: Group = pygame.sprite.Group()
         self.items_group: Group = pygame.sprite.Group()
         self.hero_group: Group = pygame.sprite.Group()
-        self.shadow_group: Group = pygame.sprite.Group()
         self.floor_group = pygame.sprite.Group()
-        self.shadow: Entity = Shadow(self.shadow_group)
-        self.Hero: Player = Hero(self.shadow, self.hero_group)
+        self.Hero: Player = Hero(self.hero_group)
         self.mapa.create_level(self.tiles_group, self.items_group, self.enemys_group, self.floor_group)
 
     def run(self)-> RunGame:
         self.new()
         while self.GAMELOOP:
-            self.fps_clock.tick(60)
-            self.events()
             self.draw()
+            self.events()
             self.update()
             self.colisions()
+            self.fps_clock.tick(60)
 
     def events(self)-> None:
         for event in pygame.event.get():
@@ -49,26 +48,30 @@ class Game(object):
                         self.Hero.sprite_anim: Sprite = 'HeroGun'
                     else:
                         self.Hero.sprite_anim: Sprite = 'HeroRun'
+                    self.hero_group.update()
             if event.type == pygame.MOUSEBUTTONDOWN and self.Hero.animations['Gun'] == True:
                 Bullet(self.Hero.rect.x, self.Hero.rect.y, (pygame.mouse.get_pos()[0]+self.Hero.la_x, pygame.mouse.get_pos()[1]+self.Hero.la_y), self.bullet_group)
 
+        keys = pygame.key.get_pressed()
+        if(keys[pygame.K_a] or keys[pygame.K_w] or keys[pygame.K_s] or keys[pygame.K_d]):
+            self.Hero.get_key(keys)
+            self.hero_group.update()
+
+
     def draw(self)-> None:
-        self.camera.fill([36, 48, 65])
         self.floor_group.draw(self.camera)
-        self.shadow_group.draw(self.camera)
+        self.hero_group.draw(self.camera)
         self.enemys_group.draw(self.camera)
         self.bullet_group.draw(self.camera)
         self.items_group.draw(self.camera)
-        self.hero_group.draw(self.camera)
         self.tiles_group.draw(self.camera)
         self.tela.blit(self.camera, (0,0), [self.Hero.rect.x-257, self.Hero.rect.y-256, 514, 512])
 
     def update(self)-> None:
-        self.shadow_group.update()
+        self.Hero.parar()
         self.enemys_group.update()
         self.bullet_group.update()
         self.items_group.update()
-        self.hero_group.update()
         pygame.display.flip()
 
     def colisions(self)-> None:

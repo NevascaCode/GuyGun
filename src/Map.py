@@ -5,6 +5,7 @@ from .ents.Items import Gun
 from .ents.Enemy import Enemy
 
 class Map(object):
+    __slots__ = ('map_array_block_wall', 'map_array_items', 'map_array_enemys', 'map', 'tiles', 'groups')
     def __init__(self):
         self.tiles = WorldMapSprite()
         map = SpriteSheet('res/sprite/spritesheet.png').get_sprite(105, 9, 47, 47)
@@ -24,6 +25,7 @@ class Map(object):
                 self.tiles.ColocaBloco(y*32, x*32, 'Floor', groups[3])
 
 class WorldMapSprite(object):
+    __slots__ = ('image', 'tiles', 'tile', 'pos_x', 'pos_y', 'groups')
     def __init__(self):
         image = SpriteSheet('res/sprite/spritesheet.png')
         self.tiles = {'Block': image.get_sprite(78, 0, 18, 18),

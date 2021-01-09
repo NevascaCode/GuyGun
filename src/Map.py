@@ -13,7 +13,7 @@ class Map(object):
         self.map_array_items: EntityLevel = pygame.PixelArray(map).extract((255, 0, 0))
         self.map_array_enemys: EntityLevel = pygame.PixelArray(map).extract((0, 255, 0))
 
-    def create_level(self, *groups: Group)-> Level:
+    def create_level(self, *groups: Group) -> Level:
         for y in range(0, 47):
             for x in range(0, 47):
                 if(self.map_array_block_wall[y][x] == -1):

@@ -1,31 +1,29 @@
 import pygame
 import math
-from src.MyTypes import Rect, Sprite, Speed, Group, Entity
 from src.Map import Map
 from src.spritesheet import SpriteSheet
 
 
 class Hero(pygame.sprite.Sprite):
-    __slots__ = ('groups', 'sprites', 'image', 'rect', 'lado_x', 'lado_y', 'velocity')
-    def __init__(self, *groups: Group):
+    def __init__(self, *groups):
         super().__init__(*groups)
         sprite_sheet = SpriteSheet('res/sprite/spritesheet.png')
-        self.sprites: Sprite = {'HeroRun':[sprite_sheet.get_sprite(1, 9, 7, 7),
+        self.sprites = {'HeroRun':[sprite_sheet.get_sprite(1, 9, 7, 7),
                                    sprite_sheet.get_sprite(11, 9, 7, 7),
                                    sprite_sheet.get_sprite(21, 9, 7, 7),(28, 28)],
                                 'HeroGun':[sprite_sheet.get_sprite(32, 22, 11, 9),
                                    sprite_sheet.get_sprite(44, 22, 11, 9),
                                    sprite_sheet.get_sprite(56, 22, 11, 9),(44, 36)]}
 
-        self.image: Sprite = sprite_sheet.get_sprite(0, 9, 9, 9)
-        self.image: Sprite = pygame.transform.scale(self.image, [28, 28])
-        self.rect: Rect = pygame.Rect(32*8, 32*8, 28, 28)
+        self.image = sprite_sheet.get_sprite(0, 9, 9, 9)
+        self.image = pygame.transform.scale(self.image, [28, 28])
+        self.rect = pygame.Rect(32*8, 32*8, 28, 28)
 
-        self.sprite_anim: Sprite= 'HeroRun'
-        self.animations: dict= {'Gun': False, 'GunPerma': False}
+        self.sprite_anim= 'HeroRun'
+        self.animations= {'Gun': False, 'GunPerma': False}
 
-        self.lado_x: Rect = [True,True]
-        self.lado_y: Rect = [True,True]
+        self.lado_x = [True,True]
+        self.lado_y = [True,True]
 
         self.speed: int = 5
         self.velocity = 4

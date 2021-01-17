@@ -123,4 +123,3 @@ class Game(object):
 
         for colisao in pygame.sprite.groupcollide(self.enemys_group, self.bullet_group, False, True):
             colisao.lifes -= 1
-            print(colisao.lifes)
